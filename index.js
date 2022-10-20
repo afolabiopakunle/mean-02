@@ -5,9 +5,16 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+const config = require('./config/database');
+
 const app = express();
 
 const users = require('./routes/users')
+
+mongoose.connect(config.database);
+
+mongoose.connection.on('connected', () => console.log('DB is now connected to ' + config.database, ));
+mongoose.connection.on('error', (ERROR) => console.log('DB ERROR', ERROR));
 
 app.use(cors());
 app.use(bodyParser.json())
