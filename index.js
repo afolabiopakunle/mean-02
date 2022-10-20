@@ -7,9 +7,13 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+const users = require('./routes/users')
+app.use(cors());
+app.use(bodyParser.json())
 
 const PORT = 3000;
 
+app.use('/users', users)
 app.get('/', (req, res) => {
     res.send('Welcome to app')
 })
