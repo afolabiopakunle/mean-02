@@ -17,7 +17,12 @@ mongoose.connection.on('connected', () => console.log('DB is now connected to ' 
 mongoose.connection.on('error', (ERROR) => console.log('DB ERROR', ERROR));
 
 app.use(cors());
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 const PORT = 3000;
 
